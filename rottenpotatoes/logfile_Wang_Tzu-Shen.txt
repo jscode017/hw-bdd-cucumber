@@ -18,28 +18,6 @@ Feature: display list of movies filtered by MPAA rating
       | Raiders of the Lost Ark | PG     | 12-Jun-1981  |
       | Chicken Run             | G      | 21-Jun-2000  |
     And I am on the RottenPotatoes home page     # features/step_definitions/web_steps.rb:44
-      /Users/jasonwang/hw-bdd-cucumber/rottenpotatoes/app/controllers/movies_controller.rb:29: target of repeat operator is not specified: /*sort = params[:sort] || session[:sort]
-          case sort
-          when 'title'
-            ordering,@title_header = {:title => :asc}, 'bg-warning hilite'
-          when 'release_date'
-            ordering,@date_header = {:release_date => :asc}, 'bg-warning hilite'
-          end
-          @all_ratings = Movie.all_ratings
-          @selected_ratings = params[:ratings] || session[:ratings] || {}
-
-          if @selected_ratings == {}
-            @selected_ratings = Hash[@all_ratings.map {|rating| [rating, rating]}]
-          end
-
-          if params[:sort] != session[:sort] or params[:ratings] != session[:ratings]
-            session[:sort] = sort
-            session[:ratings] = @selected_ratings
-            redirect_to :sort => sort, :ratings => @selected_ratings and return
-          end
-          @movies = Movie.where(rating: @selected_ratings.keys).order(ordering)*/ (SyntaxError)
-      ./features/step_definitions/web_steps.rb:45:in `/^(?:|I )am on (.+)$/'
-      features/filter_movie_list.feature:22:in `I am on the RottenPotatoes home page'
     Then 10 seed movies should exist             # features/step_definitions/movie_steps.rb:12
 
   Scenario: restrict to movies with 'PG' or 'R' ratings # features/filter_movie_list.feature:25
@@ -85,28 +63,6 @@ Feature: display list of movies sorted by different criteria
       | Raiders of the Lost Ark | PG     | 12-Jun-1981  |
       | Chicken Run             | G      | 21-Jun-2000  |
     And I am on the RottenPotatoes home page     # features/step_definitions/web_steps.rb:44
-      /Users/jasonwang/hw-bdd-cucumber/rottenpotatoes/app/controllers/movies_controller.rb:29: target of repeat operator is not specified: /*sort = params[:sort] || session[:sort]
-          case sort
-          when 'title'
-            ordering,@title_header = {:title => :asc}, 'bg-warning hilite'
-          when 'release_date'
-            ordering,@date_header = {:release_date => :asc}, 'bg-warning hilite'
-          end
-          @all_ratings = Movie.all_ratings
-          @selected_ratings = params[:ratings] || session[:ratings] || {}
-
-          if @selected_ratings == {}
-            @selected_ratings = Hash[@all_ratings.map {|rating| [rating, rating]}]
-          end
-
-          if params[:sort] != session[:sort] or params[:ratings] != session[:ratings]
-            session[:sort] = sort
-            session[:ratings] = @selected_ratings
-            redirect_to :sort => sort, :ratings => @selected_ratings and return
-          end
-          @movies = Movie.where(rating: @selected_ratings.keys).order(ordering)*/ (SyntaxError)
-      ./features/step_definitions/web_steps.rb:45:in `/^(?:|I )am on (.+)$/'
-      features/sort_movie_list.feature:22:in `I am on the RottenPotatoes home page'
     Then 10 seed movies should exist             # features/step_definitions/movie_steps.rb:12
 
   Scenario: sort movies alphabetically                              # features/sort_movie_list.feature:25
@@ -133,12 +89,6 @@ Feature: display list of movies sorted by different criteria
     And I should see "Amelie" before "The Incredibles"                         # features/step_definitions/movie_steps.rb:19
     And I should see "The Incredibles" before "The Help"                       # features/step_definitions/movie_steps.rb:19
 
-Failing Scenarios:
-cucumber features/filter_movie_list.feature:25 # Scenario: restrict to movies with 'PG' or 'R' ratings
-cucumber features/filter_movie_list.feature:44 # Scenario: all ratings selected
-cucumber features/sort_movie_list.feature:25 # Scenario: sort movies alphabetically
-cucumber features/sort_movie_list.feature:39 # Scenario: sort movies in increasing order of release date
-
-4 scenarios (4 failed)
-46 steps (4 failed, 38 skipped, 4 passed)
-0m0.121s
+4 scenarios (4 passed)
+46 steps (46 passed)
+0m0.359s
