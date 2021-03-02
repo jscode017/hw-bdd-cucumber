@@ -3,6 +3,7 @@
 %h2 Edit Existing Movie
 
 = form_tag movie_path(@movie), :method => :put do
+  =hidden_field_tag :notFirst, true 
 
   = label :movie, :title, 'Title'
   = text_field :movie, 'title'

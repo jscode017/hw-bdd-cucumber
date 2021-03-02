@@ -1,7 +1,8 @@
 %h2 Create New Movie
 
 = form_tag movies_path do
-
+  =hidden_field_tag :notFirst, true 
+  
   = label :movie, :title, 'Title'
   = text_field :movie, 'title'
 
